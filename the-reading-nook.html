@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Reading Nook - Cafe & Bookstore</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F4E1; /* Creamy off-white */
+            color: #3B2E2E; /* Dark brown */
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            color: #5C4033; /* Richer brown */
+        }
+        .transition-transform {
+            transition: transform 0.3s ease-in-out;
+        }
+        .transition-opacity {
+            transition: opacity 0.3s ease-in-out;
+        }
+        .fiction-bg {
+            background-image: url('uploaded:fantasy books.jpeg-1d01824e-56c6-4e96-9bad-64cc0c029b17');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        .fiction-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.7); /* White overlay with 70% opacity */
+            z-index: 1;
+        }
+        .fiction-bg .content {
+            position: relative;
+            z-index: 2;
+        }
+        .poetry-bg {
+            background-image: url('uploaded:Cursive Handwriting Practice.jpeg-1c4461ee-466e-46ca-8417-5c16b1b67e73');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        .poetry-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.7); /* White overlay with 70% opacity */
+            z-index: 1;
+        }
+        .poetry-bg .content {
+            position: relative;
+            z-index: 2;
+        }
+        .nonfiction-bg {
+            background-image: url('uploaded:hayseyn.jpeg-5034fccc-c464-482a-a640-71293abb6dc1');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        .nonfiction-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(255, 255, 255, 0.7); /* White overlay with 70% opacity */
+            z-index: 1;
+        }
+        .nonfiction-bg .content {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Hero Section -->
+    <header id="home" class="relative min-h-screen bg-cover bg-center text-white flex items-center justify-center p-8" style="background-image: url('https://images.unsplash.com/photo-1541167715780-f00e951f2249?q=80&w=2670&auto=format&fit=crop')">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="relative z-10 text-center">
+            <h1 class="text-6xl md:text-8xl font-bold mb-4 drop-shadow-lg">The Reading Nook</h1>
+            <p class="text-xl md:text-2xl mb-8 drop-shadow-md">Where the Aroma of Coffee Meets the Scent of Books</p>
+            <a href="#about" class="bg-white text-[#5C4033] font-bold py-3 px-8 rounded-full shadow-lg hover:bg-gray-200 transition-colors">Discover Our Story</a>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white bg-opacity-95 shadow-md backdrop-blur-sm">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold text-[#5C4033]">The Reading Nook</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#about" class="text-[#3B2E2E] hover:text-[#5C4033] font-medium transition-colors">About</a>
+                <a href="#menu" class="text-[#3B2E2E] hover:text-[#5C4033] font-medium transition-colors">Menu</a>
+                <a href="#books" class="text-[#3B2E2E] hover:text-[#5C4033] font-medium transition-colors">Books</a>
+                <a href="#contact" class="text-[#3B2E2E] hover:text-[#5C4033] font-medium transition-colors">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-[#3B2E2E] focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white bg-opacity-95 shadow-md">
+            <a href="#about" class="block py-2 px-4 text-center text-[#3B2E2E] hover:bg-gray-100">About</a>
+            <a href="#menu" class="block py-2 px-4 text-center text-[#3B2E2E] hover:bg-gray-100">Menu</a>
+            <a href="#books" class="block py-2 px-4 text-center text-[#3B2E2E] hover:bg-gray-100">Books</a>
+            <a href="#contact" class="block py-2 px-4 text-center text-[#3B2E2E] hover:bg-gray-100">Contact</a>
+        </div>
+    </nav>
+    
+    <main>
+        <!-- About Section -->
+        <section id="about" class="container mx-auto py-20 px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-12">
+                <div class="md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1549419137-b6f790c64448?q=80&w=2670&auto=format&fit=crop" alt="Bookshelves filled with books" class="rounded-2xl shadow-xl transition-transform duration-300 hover:scale-105">
+                </div>
+                <div class="md:w-1/2 text-center md:text-left">
+                    <h2 class="text-4xl font-bold mb-4">Our Cozy Corner</h2>
+                    <p class="text-lg leading-relaxed mb-4">
+                        Tucked away from the city's hustle, The Reading Nook is a peaceful sanctuary for book lovers and coffee enthusiasts. We believe in the simple pleasure of a good book and a great cup of coffee. Our space is designed to feel like a second home, where you can unwind, discover new stories, and connect with a community of fellow bibliophiles.
+                    </p>
+                    <p class="text-lg leading-relaxed">
+                        We are located in a quiet, secluded area of Bangalore, offering a much-needed escape from the mundane. Come, sit by the window, listen to the gentle rustle of pages, and let the world outside fade away.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Menu Section -->
+        <section id="menu" class="bg-[#D4B891] py-20 px-8">
+            <div class="container mx-auto">
+                <h2 class="text-center text-5xl font-bold mb-12 text-[#5C4033]">Our Offerings</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                    <!-- Drinks -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg transition-transform duration-300 hover:scale-105">
+                        <h3 class="text-3xl font-bold text-center mb-6 text-[#5C4033]">Drinks</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">Creative & Specialty Coffees</h4>
+                                <ul class="space-y-2">
+                                    <li class="flex justify-between items-center border-b pb-2 border-dashed border-gray-400">
+                                        <span class="text-lg font-medium">Rose Pistachio Latte</span>
+                                        <span class="text-lg font-medium">₹250</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2 border-dashed border-gray-400">
+                                        <span class="text-lg font-medium">Lavender Honey Latte</span>
+                                        <span class="text-lg font-medium">₹250</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2 border-dashed border-gray-400">
+                                        <span class="text-lg font-medium">Cardamom Spice Latte</span>
+                                        <span class="text-lg font-medium">₹250</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2 border-dashed border-gray-400">
+                                        <span class="text-lg font-medium">Yuzu Cold Brew</span>
+                                        <span class="text-lg font-medium">₹280</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2 border-dashed border-gray-400">
+                                        <span class="text-lg font-medium">Pineapple Fermented Latte</span>
+                                        <span class="text-lg font-medium">₹300</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2 border-dashed border-gray-400">
+                                        <span class="text-lg font-medium">Popcorn Cappuccino</span>
+                                        <span class="text-lg font-medium">₹260</span>
+                                    </li>
+                                </ul>
+                                <p class="text-right text-sm font-semibold mt-2">... and more!</p>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">Refreshing Non-Coffee Beverages</h4>
+                                <ul class="space-y-2">
+                                    <li class="flex justify-between items-center border-b pb-2 border-dashed border-gray-400">
+                                        <span class="text-lg font-medium">Kashmiri Kahwa</span>
+                                        <span class="text-lg font-medium">₹180</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2 border-dashed border-gray-400">
+                                        <span class="text-lg font-medium">Hibiscus Iced Tea with Mint</span>
+                                        <span class="text-lg font-medium">₹200</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2 border-dashed border-gray-400">
+                                        <span class="text-lg font-medium">Peanut Curd Chaas (Vegan)</span>
+                                        <span class="text-lg font-medium">₹220</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2 border-dashed border-gray-400">
+                                        <span class="text-lg font-medium">Lemon Mojito with Fresh Mint</span>
+                                        <span class="text-lg font-medium">₹240</span>
+                                    </li>
+                                </ul>
+                                <p class="text-right text-sm font-semibold mt-2">... and more!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Snacks -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg transition-transform duration-300 hover:scale-105">
+                        <h3 class="text-3xl font-bold text-center mb-6 text-[#5C4033]">Snacks</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">Innovative Indian Fusion Snacks</h4>
+                                <ul class="space-y-2">
+                                    <li class="flex justify-between items-center border-b pb-2 border-dashed border-gray-400">
+                                        <span class="text-lg font-medium">Tandoori Paneer Bruschetta</span>
+                                        <span class="text-lg font-medium">₹320</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2 border-dashed border-gray-400">
+                                        <span class="text-lg font-medium">Samosa Tarts</span>
+                                        <span class="text-lg font-medium">₹280</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2 border-dashed border-gray-400">
+                                        <span class="text-lg font-medium">Pav Bhaji Canapés</span>
+                                        <span class="text-lg font-medium">₹300</span>
+                                    </li>
+                                </ul>
+                                <p class="text-right text-sm font-semibold mt-2">... and more!</p>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">Gourmet Sandwiches & Toasts</h4>
+                                <ul class="space-y-2">
+                                    <li class="flex justify-between items-center border-b pb-2 border-dashed border-gray-400">
+                                        <span class="text-lg font-medium">Pesto Paneer Toast</span>
+                                        <span class="text-lg font-medium">₹280</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2 border-dashed border-gray-400">
+                                        <span class="text-lg font-medium">Mushroom & Spinach Toast</span>
+                                        <span class="text-lg font-medium">₹260</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2 border-dashed border-gray-400">
+                                        <span class="text-lg font-medium">Avocado Toast with Feta & Seeds</span>
+                                        <span class="text-lg font-medium">₹350</span>
+                                    </li>
+                                </ul>
+                                <p class="text-right text-sm font-semibold mt-2">... and more!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Baked Goods & Desserts -->
+                    <div class="bg-white p-8 rounded-2xl shadow-lg transition-transform duration-300 hover:scale-105">
+                        <h3 class="text-3xl font-bold text-center mb-6 text-[#5C4033]">Baked Goods & Desserts</h3>
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="text-xl font-bold mb-2">Eye-catching Desserts</h4>
+                                <ul class="space-y-2">
+                                    <li class="flex justify-between items-center border-b pb-2 border-dashed border-gray-400">
+                                        <span class="text-lg font-medium">Motichoor Ladoo Parfait</span>
+                                        <span class="text-lg font-medium">₹250</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2 border-dashed border-gray-400">
+                                        <span class="text-lg font-medium">Lotus Biscoff Croissant</span>
+                                        <span class="text-lg font-medium">₹280</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2 border-dashed border-gray-400">
+                                        <span class="text-lg font-medium">Classic Fudge Brownie</span>
+                                        <span class="text-lg font-medium">₹180</span>
+                                    </li>
+                                    <li class="flex justify-between items-center border-b pb-2 border-dashed border-gray-400">
+                                        <span class="text-lg font-medium">Walnut Brownie Sundae</span>
+                                        <span class="text-lg font-medium">₹250</span>
+                                    </li>
+                                </ul>
+                                <p class="text-right text-sm font-semibold mt-2">... and more!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- New section for bookstore -->
+        <section id="books" class="container mx-auto py-20 px-8">
+             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <div class="md:col-span-1 lg:col-span-3 text-center">
+                    <h2 class="text-center text-5xl font-bold mb-12 text-[#5C4033]">Our Bookstore Collection</h2>
+                    <p class="text-lg mb-6">Explore our curated selection of timeless classics and thought-provoking works. We offer a quiet space to get lost in a new world.</p>
+                </div>
+                
+                <div class="fiction-bg p-8 rounded-2xl shadow-lg transition-transform duration-300 hover:scale-105 text-[#3B2E2E]">
+                    <div class="content">
+                        <h4 class="text-2xl font-bold mb-2">Fiction & Classics</h4>
+                        <ul class="space-y-2 text-lg">
+                            <li><span class="font-medium">To Kill a Mockingbird</span> by Harper Lee</li>
+                            <li><span class="font-medium">The Great Gatsby</span> by F. Scott Fitzgerald</li>
+                            <li><span class="font-medium">Pride and Prejudice</span> by Jane Austen</li>
+                            <li><span class="font-medium">1984</span> by George Orwell</li>
+                            <li><span class="font-medium">One Hundred Years of Solitude</span> by Gabriel García Márquez</li>
+                        </ul>
+                        <p class="text-right text-sm font-semibold mt-2">... and more!</p>
+                    </div>
+                </div>
+
+                <div class="poetry-bg p-8 rounded-2xl shadow-lg transition-transform duration-300 hover:scale-105 text-[#3B2E2E]">
+                    <div class="content">
+                        <h4 class="text-2xl font-bold mb-2">Poetry & Philosophy</h4>
+                        <ul class="space-y-2 text-lg">
+                            <li><span class="font-medium">The Prophet</span> by Kahlil Gibran</li>
+                            <li><span class="font-medium">Leaves of Grass</span> by Walt Whitman</li>
+                            <li><span class="font-medium">Meditations</span> by Marcus Aurelius</li>
+                            <li><span class="font-medium">The Republic</span> by Plato</li>
+                            <li><span class="font-medium">The Essential Rumi</span> (translated by Coleman Barks)</li>
+                        </ul>
+                        <p class="text-right text-sm font-semibold mt-2">... and more!</p>
+                    </div>
+                </div>
+
+                <div class="nonfiction-bg p-8 rounded-2xl shadow-lg transition-transform duration-300 hover:scale-105 text-[#3B2E2E]">
+                    <div class="content">
+                        <h4 class="text-2xl font-bold mb-2">Non-Fiction & Biographies</h4>
+                        <ul class="space-y-2 text-lg">
+                            <li><span class="font-medium">Educated</span> by Tara Westover</li>
+                            <li><span class="font-medium">Becoming</span> by Michelle Obama</li>
+                            <li><span class="font-medium">Man’s Search for Meaning</span> by Viktor Frankl</li>
+                            <li><span class="font-medium">Steve Jobs</span> by Walter Isaacson</li>
+                            <li><span class="font-medium">Sapiens: A Brief History of Humankind</span> by Yuval Noah Harari</li>
+                        </ul>
+                        <p class="text-right text-sm font-semibold mt-2">... and more!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="container mx-auto py-20 px-8">
+            <h2 class="text-center text-5xl font-bold mb-12 text-[#5C4033]">Visit Our Nook</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <!-- Location Details -->
+                <div>
+                    <h3 class="text-3xl font-bold mb-4 text-[#5C4033]">Location & Hours</h3>
+                    <p class="text-lg mb-4">
+                        Find us at our secluded spot, away from the city's noise.
+                    </p>
+                    <p class="text-lg font-medium mb-2">Address:</p>
+                    <p class="mb-4">
+                        123, Serene Lane, Off Sarjapur Road,
+                        <br>
+                        Near Wipro Campus, Bangalore - 560035
+                    </p>
+                    <p class="text-lg font-medium mb-2">Hours:</p>
+                    <p class="mb-4">
+                        Tuesday - Sunday: 10:00 AM - 9:00 PM
+                        <br>
+                        Monday: Closed
+                    </p>
+                    <p class="text-lg font-medium mb-2">Contact:</p>
+                    <p class="mb-4">
+                        Phone: +91 98765 43210
+                        <br>
+                        Email: hello@thereadingnook.in
+                    </p>
+                </div>
+                
+                <!-- Contact Form -->
+                <div class="bg-[#EAE0D0] p-8 rounded-2xl shadow-lg">
+                    <h3 class="text-3xl font-bold text-center mb-6 text-[#5C4033]">Get in Touch</h3>
+                    <form id="contact-form" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium">Name</label>
+                            <input type="text" id="name" name="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium">Email</label>
+                            <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium">Message</label>
+                            <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm p-2"></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="bg-[#5C4033] text-white font-bold py-2 px-6 rounded-full hover:bg-[#3B2E2E] transition-colors">Send Message</button>
+                        </div>
+                    </form>
+                    <div id="form-message" class="mt-4 text-center hidden">
+                        <p class="text-green-600 font-bold">Thank you for your message! We'll get back to you shortly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#3B2E2E] text-white py-8 text-center">
+        <p>&copy; 2023 The Reading Nook. All rights reserved.</p>
+        <div class="mt-4 flex justify-center space-x-4">
+            <a href="#" class="hover:text-[#D4B891] transition-colors">Facebook</a>
+            <a href="#" class="hover:text-[#D4B891] transition-colors">Instagram</a>
+            <a href="#" class="hover:text-[#D4B891] transition-colors">Twitter</a>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Toggle mobile menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Handle contact form submission
+        const contactForm = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            formMessage.classList.remove('hidden');
+            contactForm.reset();
+        });
+    </script>
+
+</body>
+</html>
